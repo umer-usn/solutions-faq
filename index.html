@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ</title>
+<meta name="description" content="Answers on payout speed, instant limits, final deposits and who Wyzia works with.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --lav: #AEABFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; background: #000; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    color: #fff;
+    background: #000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ---------- The section ---------- */
+  .section {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(56px, 6vw, 96px) 7vw clamp(64px, 7vw, 110px);
+    background: #000;
+  }
+  .wrap { position: relative; max-width: 1240px; margin: 0 auto; }
+
+  /* ---------- Soft drifting glows ---------- */
+  .glows { position: absolute; inset: 0; pointer-events: none; }
+  .glow { position: absolute; border-radius: 50%; }
+  .glow > i { display: block; width: 100%; height: 100%; border-radius: 50%; animation: drift 16s ease-in-out infinite alternate; }
+  .glow.g1 { width: 46vw; height: 46vw; right: -10vw; top: -16vw; }
+  .glow.g1 > i { background: radial-gradient(circle, rgba(124,76,255,.16) 0%, rgba(124,76,255,0) 66%); }
+  .glow.g2 { width: 50vw; height: 50vw; left: 20vw; bottom: -30vw; }
+  .glow.g2 > i { background: radial-gradient(circle, rgba(150,110,255,.16) 0%, rgba(150,110,255,0) 66%); animation-duration: 21s; animation-delay: -8s; }
+  @keyframes drift {
+    from { transform: translate3d(-3vw, -2vw, 0) scale(1); }
+    to   { transform: translate3d(3vw, 2.5vw, 0) scale(1.12); }
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(46px, 5.6vw, 80px);
+    font-weight: 400; line-height: 1; letter-spacing: -0.04em;
+  }
+
+  /* ---------- Questions ---------- */
+  .list { margin: clamp(30px, 3.6vw, 52px) 0 0; padding: 0; list-style: none; display: grid; gap: clamp(16px, 2.3vw, 33px); }
+
+  .q {
+    position: relative;
+    border-radius: clamp(22px, 2.4vw, 34px);
+    background:
+      radial-gradient(80% 140% at 100% 100%, rgba(124,84,230,.26) 0%, rgba(124,84,230,0) 70%),
+      linear-gradient(160deg, #26232c 0%, #17141d 55%, #14101c 100%);
+    box-shadow: 0 40px 70px -40px rgba(0,0,0,.7);
+    transition: box-shadow .5s ease;
+  }
+  .q::before {
+    content: ""; position: absolute; inset: 0; padding: 1px; border-radius: inherit; pointer-events: none;
+    background: linear-gradient(160deg, rgba(235,228,255,.42) 0%, rgba(170,150,215,.14) 40%, rgba(150,130,200,.3) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    transition: opacity .4s ease;
+  }
+  .q.open { box-shadow: 0 40px 70px -40px rgba(0,0,0,.7), 0 0 60px -26px rgba(124,76,255,.4); }
+
+  .q button {
+    appearance: none; border: 0; background: none; cursor: pointer; width: 100%;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    padding: clamp(24px, 3vw, 40px) clamp(20px, 1.9vw, 26px);
+    border-radius: inherit;
+    font: 400 clamp(19px, 2.05vw, 29px)/1.2 var(--sans); letter-spacing: -0.03em; text-align: left; color: #fff;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .q button:focus-visible { outline: 2px solid var(--lav); outline-offset: 3px; }
+  .chev { flex: none; width: 18px; height: 18px; margin-right: clamp(6px, 1.2vw, 18px); color: var(--lav); transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+  .q.open .chev { transform: rotate(180deg); }
+
+  .a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .6s cubic-bezier(.2,.7,.2,1); }
+  .q.open .a { grid-template-rows: 1fr; }
+  .a > div { overflow: hidden; }
+  .a p {
+    margin: 0;
+    padding: 0 clamp(20px, 1.9vw, 26px) clamp(26px, 3vw, 40px);
+    max-width: 74em;
+    font-size: clamp(14px, 1.1vw, 16px); line-height: 1.55; color: #fff;
+    opacity: 0; transform: translate3d(0, 8px, 0);
+    transition: opacity .4s ease, transform .6s cubic-bezier(.2,.7,.2,1);
+  }
+  .q.open .a p { opacity: 1; transform: none; transition-delay: .12s; }
+
+  /* ---------- Reveal ---------- */
+  .rv { opacity: 0; transform: translate3d(0, 18px, 0); transition: opacity .9s cubic-bezier(.2,.7,.2,1) var(--d, 0s), transform 1s cubic-bezier(.2,.7,.2,1) var(--d, 0s); }
+  .in .rv { opacity: 1; transform: none; }
+  .nojs .rv { opacity: 1; transform: none; }
+  .nojs .a { grid-template-rows: 1fr; }
+  .nojs .a p { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rv { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .a, .a p, .chev { transition: none !important; }
+    .glow > i { animation: none; }
+  }
+  @media (max-width: 700px) {
+    .section { padding-left: 20px; padding-right: 20px; }
+    .q button { gap: 14px; }
+  }
+</style>
+</head>
+
+<body class="nojs">
+<section class="section" id="faq" aria-labelledby="faq-h">
+
+  <div class="wrap">
+    <h2 id="faq-h" class="rv">FAQ</h2>
+
+    <ul class="list">
+
+      <li class="q rv" style="--d:.1s">
+        <button type="button" id="q1" aria-expanded="false" aria-controls="a1">
+          <span>What's the difference between pay-ins and payouts?</span>
+          <svg class="chev" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.5 9 6l5.5 5.5"/></svg>
+        </button>
+        <div class="a" id="a1" role="region" aria-labelledby="q1"><div><p>Pay-ins are payments you collect from customers. Payouts are payments you send, such as wages, claims, winnings or refunds. Wyzia handles both through one API.</p></div></div>
+      </li>
+
+      <li class="q rv" style="--d:.2s">
+        <button type="button" id="q2" aria-expanded="false" aria-controls="a2">
+          <span>What is Request for Payment?</span>
+          <svg class="chev" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.5 9 6l5.5 5.5"/></svg>
+        </button>
+        <div class="a" id="a2" role="region" aria-labelledby="q2"><div><p>It's a payment request you send through the banking system. Your customer approves it in their banking app, and the money arrives in seconds, final. It's available where the customer's bank supports it.</p></div></div>
+      </li>
+
+      <li class="q rv" style="--d:.3s">
+        <button type="button" id="q3" aria-expanded="false" aria-controls="a3">
+          <span>How fast are Wyzia payouts?</span>
+          <svg class="chev" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.5 9 6l5.5 5.5"/></svg>
+        </button>
+        <div class="a" id="a3" role="region" aria-labelledby="q3"><div><p>Instant payments arrive in seconds and email or mobile payouts in minutes. Same-day bank transfers settle within hours on business days, and debit card payouts arrive in near real time.</p></div></div>
+      </li>
+
+      <li class="q rv" style="--d:.4s">
+        <button type="button" id="q4" aria-expanded="false" aria-controls="a4">
+          <span>Can I send payouts on weekends and holidays?</span>
+          <svg class="chev" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.5 9 6l5.5 5.5"/></svg>
+        </button>
+        <div class="a" id="a4" role="region" aria-labelledby="q4"><div><p>Yes. Instant payments and email or mobile payouts run 24/7, including weekends and holidays. Same-day bank transfers run on business days.</p></div></div>
+      </li>
+
+      <li class="q rv" style="--d:.5s">
+        <button type="button" id="q5" aria-expanded="false" aria-controls="a5">
+          <span>What's the most I can send in one payment?</span>
+          <svg class="chev" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.5 9 6l5.5 5.5"/></svg>
+        </button>
+        <div class="a" id="a5" role="region" aria-labelledby="q5"><div><p>Up to $10 million per instant payment, subject to bank limits, and up to $1 million per same-day bank transfer.</p></div></div>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+<script>
+(function () {
+  "use strict";
+  var section = document.getElementById("faq");
+  document.body.classList.remove("nojs");
+
+  /* each question opens and closes on its own */
+  Array.prototype.forEach.call(section.querySelectorAll(".q"), function (q) {
+    var btn = q.querySelector("button");
+    btn.addEventListener("click", function () {
+      var open = !q.classList.contains("open");
+      q.classList.toggle("open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+
+  if (!("IntersectionObserver" in window)) { section.classList.add("in"); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { section.classList.add("in"); io.disconnect(); } });
+  }, { threshold: 0.15 });
+  io.observe(section);
+})();
+</script>
+</body>
+</html>
